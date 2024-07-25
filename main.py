@@ -1,8 +1,9 @@
+import math
 class Figure:
     sides_count = 0
 
-    def __init__(self, sides, color, filled):
-        self.__sides = sides
+    def __init__(self, color, *sides, filled=True):
+        self.__sides = list(sides)
         self.__color = color
         self.filled = filled
 
@@ -52,12 +53,13 @@ class Figure:
 class Circle(Figure):
     sides_count = 1
 
-    def __init__(self, sides, color, filled, radius):
-        super().__init__(sides, color, filled)
-        self.radius = sides[0]
+    def __init__(self, color, sides, filled=True,):
+        super().__init__(color, sides, filled=True)
+        self.__radius = sides[0] // (2 * math.pi)
 
-# f1 = Figure(6, [15, 45, 132], True)
-# f1.about()
-# print(f1.get_color())
-# f1.set_color(2, 31, 154)
-# print(f1.get_color())
+    def get_square(self):
+        return math.pi * self.__radius ** 2
+
+
+
+
